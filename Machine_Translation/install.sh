@@ -1,3 +1,0 @@
-config:
-
-pip install fairseq
