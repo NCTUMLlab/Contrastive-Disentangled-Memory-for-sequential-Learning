@@ -31,6 +31,7 @@ from fairseq.modules import (
 from fairseq.modules.checkpoint_activations import checkpoint_wrapper
 from fairseq.modules.quant_noise import quant_noise as apply_quant_noise_
 from torch import Tensor
+from fairseq.modules.memory_component import *
 
 
 DEFAULT_MAX_SOURCE_POSITIONS = 1024
@@ -669,6 +670,9 @@ class TransformerEncoder(FairseqEncoder):
 
         '''
 
+
+	vae = VAE()
+
         self.indexha = []
 
         self.map_ = []
@@ -709,6 +713,8 @@ class TransformerEncoder(FairseqEncoder):
                         if k==0:
                             self.indexha.append (memory_indices[:,0,0])
                             self.map_.append(layer.att_map_)
+
+			compressed_memory = vae(torch.gather(x_temp,0,memory_indices))
                         
                         memory.append (torch.gather(x_temp,0,memory_indices))
                         mask_memory.append ( torch.gather(mask_all[i],1,mask_indices) )
@@ -746,6 +752,7 @@ class TransformerEncoder(FairseqEncoder):
                             self.indexha.append  (memory_indices[:,0,0])
                             self.map_.append(layer.att_map_)
                         
+			compressed_memory = vae(torch.gather(x_temp,0,memory_indices))
                         memory[k] =  (torch.gather(x_temp,0,memory_indices))
                         mask_memory[k] =( torch.gather(mask_temp,1,mask_indices) )
 
