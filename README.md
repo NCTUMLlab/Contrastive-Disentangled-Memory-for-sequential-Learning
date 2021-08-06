@@ -11,12 +11,12 @@ The implementation includes machine translation and online speech recognition.
 - Fairseq
 - ESPnet
 
-To do machine translation
+### To do machine translation
 ```sh
 cd Machine_Translation
 ```
 
-To do speech recognition
+### To do speech recognition
 ```sh
 cd Speech_Recognition
 ```
