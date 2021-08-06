@@ -9,7 +9,10 @@ pip install --editable ./
 - PyTorch version >= 1.5.0
 - Python version >= 3.6
 
-## Train a De-En translation model with iwslt dataset 
+
+## Run
+
+### Train a De-En translation model with iwslt dataset 
 
 ```sh
 mkdir -p checkpoints/transformer_iwslt_de_en
@@ -30,7 +33,7 @@ CUDA_VISIBLE_DEVICES=0 fairseq-train \
     --best-checkpoint-metric bleu --maximize-best-checkpoint-metric
 ```
 
-## Train a En-De translation model with WMT dataset 
+### Train a En-De translation model with WMT dataset 
 
 ```sh
 mkdir -p checkpoints/transformer_wmt_en_de
@@ -52,7 +55,7 @@ CUDA_VISIBLE_DEVICES=0 fairseq-train \
 ```
 
 
-## Train a En-Fr translation model with WMT dataset 
+### Train a En-Fr translation model with WMT dataset 
 ```sh
 mkdir -p checkpoints/transformer_wmt_en_fr
 
